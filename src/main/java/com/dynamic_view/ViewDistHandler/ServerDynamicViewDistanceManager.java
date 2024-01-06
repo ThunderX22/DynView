@@ -36,15 +36,15 @@ public class ServerDynamicViewDistanceManager implements IDynamicViewDistanceMan
     @Override
     public void initViewDist()
     {
-        // Set starting distances equal to minimum specified in the config.
-        currentChunkViewDist = minChunkViewDist;
-        currentChunkUpdateDist = minChunkUpdateDist;
-
         // Set mean values.
         meanChunkViewDist = (minChunkViewDist + maxChunkViewDist) / 2;
         meanChunkUpdateDist = (minChunkUpdateDist + maxChunkUpdateDist) / 2;
 
-        ServerLifecycleHooks.getCurrentServer().getPlayerList().setViewDistance(minChunkViewDist);
+        // Set starting distances to the mean of each.
+        currentChunkViewDist = meanChunkViewDist;
+        currentChunkUpdateDist = meanChunkUpdateDist;
+
+        ServerLifecycleHooks.getCurrentServer().getPlayerList().setViewDistance(currentChunkViewDist);
         if (DynView.getConfig().getCommonConfig().adjustSimulationDistance.get())
         {
             ServerLifecycleHooks.getCurrentServer().getAllLevels().forEach(level -> level.getChunkSource().setSimulationDistance(currentChunkUpdateDist));
