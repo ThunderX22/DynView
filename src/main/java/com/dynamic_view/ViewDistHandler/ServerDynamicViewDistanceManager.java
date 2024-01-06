@@ -1,7 +1,5 @@
 package com.dynamic_view.ViewDistHandler;
 
-import javax.lang.model.util.ElementScanner14;
-
 import com.dynamic_view.DynView;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Mth;
